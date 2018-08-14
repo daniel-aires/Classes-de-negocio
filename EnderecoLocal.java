@@ -12,7 +12,6 @@ import org.hibernate.validator.constraints.NotBlank;
 public class EnderecoLocal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
     
     @Size(max = 150)
     @Column(name = "servico_logradouro", nullable = false, length = 150)
