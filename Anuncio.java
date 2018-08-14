@@ -83,11 +83,12 @@ public class Anuncio implements Serializable {
 	@Column(name = "valor_final", nullable = false, precision = 10, scale = 2)
 	private BigDecimal valor;
 
-	
+	@Embedded
 	private EnderecoLocal enderecoLocal;
 
+	@ManyToOne
 	@JoinColumn(name = "contratante_id", nullable = false)
-	private Long contratante;
+	private Entidade contratante;
 
 	
 	@OneToMany
@@ -106,8 +107,6 @@ public class Anuncio implements Serializable {
 	@OneToMany(mappedBy = "anuncio", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Inscricao> inscricoes = new ArrayList<Inscricao>();
 
-	@NotNull
-	private String local;
 
 	public Long getId() {
 		return id;
@@ -208,19 +207,12 @@ public class Anuncio implements Serializable {
 	 this.enderecoLocal = enderecoLocal; }
 	 
 
-	public Long getContratante() {
+	public Entidade getContratante() {
 		return contratante;
 	}
 
-	public String getLocal() {
-		return local;
-	}
 
-	public void setLocal(String local) {
-		this.local = local;
-	}
-
-	public void setContratante(Long contratante) {
+	public void setContratante(Entidade contratante) {
 		this.contratante = contratante;
 	}
 
